@@ -3,6 +3,7 @@ git add README.txt
 # Git commands
 git add git_cmd.sh
 # python, C/C++ source
+git add Src/*.py
 git add Src/*.cpp
 git add Src/*.h
 git add Src/makefile
