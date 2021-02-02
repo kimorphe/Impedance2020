@@ -1,0 +1,610 @@
+\documentclass[11pt,a4j]{mybook2}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+%\documentclass[11pt,a4j]{jbook}
+%\usepackage{graphicx,wrapfig}
+\usepackage{graphicx,titlesec}
+%\usepackage{tocloft} %目次の調整
+%\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{16.5cm}
+%\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%\titleformat{\chapter}[display]{\normalfont\normalsize}{\chaptertitlename \thechapter 章}{20pt}{\normalsize}
+%{\normalsize}
+%\vspace*{\baselineskip}
+%\renewcommand{\cfttoctitlefont}{\hfill\normalsize\bfseries}
+%\renewcommand{\cftaftertoctitle}{\hfill\null}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\title{
+\vspace{20mm}
+圧縮成形された不飽和粘土の\\
+電気化学インピーダンス特性に関する研究
+\\
+\vspace{5mm}
+Study on Chemical Impedance Characteristics 
+of Unsaturated and Compacted Clay
+\vspace{60mm}
+}
+%\date{\today}
+\date{2021年2月9日}
+\author{
+	\vspace{40mm}
+岡山大学環境理工学部\\
+環境デザイン工学科 10429223\\
+	佐々木 絢悟}
+
+%\makeatletter
+%\def\@evenfoot{\hfil -\thepage- \hfil}
+%\makeatother
+%\makeatletter
+%\def\@oddfoot{\hfil -\thepage- \hfil}
+%\makeatother
+%\makeatletter
+%\def\@oddeven{}
+%\makeatother
+
+\begin{document}
+\maketitle
+\tableofcontents
+\frontmatter
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{1次元軸力問題}
+%\makeatletter
+%\def\@oddhead{\hfil -\thepage- \hfil}
+%\makeatother
+%\makeatletter
+%\def\@oddfoot{\hfil -\thepage- \hfil}
+%\makeatother
+%\section{変形に関する量}
+\input{1_intro.tex}
+この章では，部材軸方向に引張あるいは圧縮の力を受ける棒部材に，どのような力と変形が
+生じるかについて考える．ここでの目標は，
+\begin{enumerate}
+\item
+	棒部材に作用する力と変形が満足すべき方程式を導くこと
+\item
+	荷重と支持条件の記述方法について学ぶこと
+\item
+	上記1と2の下，部材内部の力と変形分布を求める方法を修得すること
+\end{enumerate}
+の3点である．
+図\ref{fig:fig1}-(a)に示すように，長さ$l$の棒部材に対し断面位置を表すための座標$x$とる．
+この座標で指定される開区間$a<x<b$を$(a,b)$と書き，区間$(a,b)$に生じる伸びを
+$\Delta l (a,b)$と表すことにする．ここで，区間$(a,b)$における平均ひずみ$\overline{\varepsilon}(a,b)$
+を次式で定義する．
+\begin{equation}
+	\overline{\varepsilon}(a,b) =\frac{\Delta l (a,b)}{b-a}
+	\label{eqn:eps_bar}
+\end{equation}
+$\bar \varepsilon(a,b)$は，変形前の区間長$b-a$と伸びの比率を表す無次元の量で，
+この区間の平均的な伸び率と考えることができる．$b-a>0$だから$\bar{\varepsilon}>0$は
+伸びを，$\bar{\varepsilon}<0$は縮みを表すことは明らかである．
+また，平均ひずみ$\bar{\varepsilon}(a,b)$の極限:
+\begin{equation}
+	\varepsilon(a)=\lim_{b \rightarrow a}\overline{\varepsilon}(a,b)
+	\label{eqn:eps_def}
+\end{equation}
+を$x=a$における{\rm \bf ひずみ}と呼び, 局所的な変形を表す量として用いる. 
+$\varepsilon$の正負の意味は，$\bar\varepsilon$の場合と同じだから
+\[
+	\begin{array}{cc}
+		\varepsilon >0 & \Rightarrow 伸び \\
+		\varepsilon <0 & \Rightarrow 縮み
+	\end{array}
+\]
+である．\\
+
+部材の変形前に位置$x$にあった物質点が，変形後$x+u$に移動するとき，
+物質点の移動量$u$を位置$x$における{\rm \bf 変位}と呼ぶ．変位は物質点が当初
+あった位置$x$に応じて一般に異なることが想定されるため，$u(x)$と書き
+位置$x$の関数と考える．
+区間$(a,b)$の伸び$\Delta l(a,b)$は，変位$u(x)$を用いて
+\begin{equation}
+	\Delta l(a,b)=u(b)-u(a)
+	\label{eqn:dell_u}
+\end{equation}
+と表すことができる．従って，式(\ref{eqn:eps_def})は，変位を使って
+\begin{equation}
+	\varepsilon(a) = \lim _{b\rightarrow a} \frac{u(b)-u(a)}{b-a}= \left.\frac{du}{dx}\right|_{x=a}
+	\label{eqn:eps_u}
+\end{equation}
+と表すことができる．すなわち，変位とひずみの間には
+\begin{equation}
+	\varepsilon(x)=\frac{du(x)}{dx}
+	\label{eqn:e_dudx}
+\end{equation}
+の関係があることが分かる．このことは同時に
+\begin{equation}
+	\int_{x'=a}^{x'=b} \varepsilon(x') dx'=u(b)-u(a)=\Delta l (a,b)
+	\label{eqn:u_int_eps}
+\end{equation}
+であることを意味する．もし, $u(a)=0$となるように積分範囲の下限$a$を選ぶことができるならば, 
+$b=x$として式(\ref{eqn:u_int_eps})を
+\begin{equation}
+	u(x)=\int_{x'=a}^{x'=x} \varepsilon(x') dx'
+	\label{eqn:u_int_eps0}
+\end{equation}
+とすることができる.また，$\varepsilon(x)$が，区間$(a,b)$で一定値$\varepsilon_0$
+をとる場合，式(\ref{eqn:u_int_eps})は
+\begin{equation}
+	\Delta l(a,b)=\varepsilon_0 (b-a)
+	\label{eqn:eps0}
+\end{equation}
+となる．式(\ref{eqn:eps0})は式(\ref{eqn:u_int_eps})が与える自明な結果だが，
+軸力問題の計算においてしばしば利用される有用な関係である．
+\subsection{問題}
+\begin{enumerate}
+\item
+図\ref{fig:fig1}-(a)に示すような長さ$l$の棒部材に，同図(b)から(d)に示すような変位が発生している
+三通りの場合について考える．これら各々の場合について，ひずみ$\varepsilon(x)$を求め, 
+その結果をグラフとして示せ．
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.7\linewidth]{ex1_disp.eps} 
+
+	\end{center}
+	\caption{棒部材中の変位分布を表すグラフ.} 
+	\label{fig:fig1}
+\end{figure}
+\item
+図\ref{fig:fig2}-(a)のような一端が固定された長さ$l$の棒部材に，
+同図(b)〜(d)に示すようなひずみが発生しているとする．
+これら各々のひずみ分布について, 以下の問に答えよ．
+	\begin{enumerate}
+	\renewcommand{\theenumii}{\roman{enumii}}
+	\item
+		変位$u(x)$を求め,その結果をグラフとして示せ．
+	\item
+	区間$(0,l)$, $\left(0,\frac{l}{2}\right)$および
+	$\left(\frac{l}{2},l\right)$における伸びをそれぞれ求めよ，
+	\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.7\linewidth]{ex2_strain.eps} 
+	\end{center}
+	\caption{棒部材中のひずみ分布を表すグラフ.} 
+	\label{fig:fig2}
+\end{figure}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\chapter{力に関する量}
+\section{外力と内力}
+部材に外部から加えられた力は{\rm \bf 外力}，外力に起因して部材内部に発生する力(部材内部で
+伝達される力)は{\rm \bf 内力}と呼ばれる．
+構造力学計算では，通常，外力は既知であると考える．
+一方，内力に関しては，どのような外力が構造や部材に加えられたかだけでなく，部材の寸法や形状，
+材質，支持条件に依存して決まることから自由に制御することはできず，未知量として扱う．
+外力には，ある一点に集中して加わる{\rm \bf 集中荷重}と，(区分的に)連続的に分布して作用する
+{\rm \bf 分布荷重}がある．本節では，棒部材の部材軸方向に集中荷重や分布荷重が
+作用する場合について考える．
+\subsection{外力の表現}
+\hspace{\parindent}
+断面位置や荷重方向を表すために，図\ref{fig:fig0}-(a)に示すような部材軸に沿う座表$x$をとる．
+外力は部材軸方向に作用するため，その向きは$x>0$あるいは$x<0$方向のいずれかである．
+そこで，$x>0$を向く力を正，$x<0$を向く力を負の量でそれぞれ表す．
+集中荷重の作用点は，荷重が作用する位置(作用点)の座標$x$を用いて指定すればよい．
+例えば，部材中央の点で$x<0$の方向に大きさ1[kgf]の力が作用するならば，"$x=\frac{l}{2}$
+に作用する大きさ-1[kgf]の力"と呼ぶことができる．\\
+一方，分布荷重は図\ref{fig:fig0}-(a)に示すように一定の区間内で各点に作用する．
+そのため，分布荷重を定量的に表現する場合，作用点を明示的に指定するのでなく，
+部材各点における分布荷重の大きさを位置の関数として表現すればよい．
+以下では特に断りのない限り，位置$x$に作用する分布荷重の大きさを\underline{単位長さあたりの力}で表し
+これを$p(x)$と書く．例えば，合計1kgfの力が長さ2[m]の部材全体に均等に分布して加えられているならば，
+単位長さ辺りの力は0.5kgfであるから$p(x)=0.5$kgf/mの一定値を取る関数として分布力を表すことができる．
+分布荷重$p(x)$が全体としてどのようなものであるかを視覚的に表現するときは，
+図\ref{fig:fig0}-(b)のようなグラフを描くことがある．一方，分布荷重に関する具体的な計算は，
+このようなグラフを表す関数形を特定し，微分や積分演算によって行う．
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.4\linewidth]{ploads.eps} 
+	\end{center}
+	\caption{複数の集中荷重$\left\{(x_i,f_i)\right\}_{i=1}^n$を受ける棒部材.} 
+	\label{fig:ploads}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.7\linewidth]{bar1d.eps} 
+	\end{center}
+	\caption{棒部材に作用する分布外力$p(x)$.} 
+	\label{fig:fig0}
+\end{figure}
+\subsection{合力の計算}
+分布荷重や複数の集中荷重が部材に作用するとき，その合力を計算することがしばしば必要となる．
+いま，$n$個の集中荷重が部材に作用し，そのうち第$i$番目の荷重の作用点位置が$x_i$，大きさが
+$f_i$であったとする．このとき，集中荷重の組は
+\[
+	\left\{ 
+	(x_1,f_1),(x_2,f_2),\dots (x_n,f_n)
+	\right\}
+	=
+	\left\{
+		(x_i,f_i)
+	\right\}_{i=1}^n
+\]
+と表すことができる．これら集中荷重の合力を$F$とすれば，$F$は$f_i\, (i=1,\dots n)$の和:
+\begin{equation}
+	F=f_1+f_2+\cdots f_n=\sum_{i=1}^n f_i
+	\label{eq:Ftot}
+\end{equation}
+で与えられる．一方，分布荷重$p(x)$が加えられている場合，$p(x)$を積分することで合力が求められる．
+ここで，区間$(a,b)$に作用する分布荷重の合力を$P(a,b)$とすれば，$P(a,b)$は
+\begin{equation}
+	P(a,b)=\int_{a}^{b}p(x')dx'=P(b)-P(a)
+	\label{eqn:Pab}
+\end{equation}
+で与えられる.ただし, 式(\ref{eqn:Pab})最右辺の$P(x)$は$p(x)$の任意の原始関数を表し，
+\begin{equation}
+	\frac{dP}{dx}=P'(x)=p(x)
+	\label{eqn:dPdx}
+\end{equation}
+の関係を満たす．集中荷重に関しても，区間$(a,b)$において作用する集中荷重の合力が必要な場合は，
+$a< x_i < b$となるような$i$についてのみ$f_i$の和を取れば良い．この意味での合力を$F(a,b)$とすれば，
+$F(a,b)$は次の式で与えられる．
+\begin{equation}
+	F(a,b)=\sum_{　a < x_i <b } f_i
+	\label{eqn:Ftot_ab}
+\end{equation}
+なお，式(\ref{eqn:Ftot_ab})右辺の和は，"$a<x_i<b$となるような$i$について$f_i$の和を取る"と読む．
+\subsection{内力としての軸力}
+図\ref{fig:defN}-(a)に示すように，棒部材が何らかの外力を受けた状態で静止しているとする．
+このとき，ある位置$a-a'$で部材を仮想的に切断することを考える．
+切断によって生じる2つの断面の左側を$A^-$, 右側を$A^+$とする．
+これらの断面は物理的には完全に接合されていることから，部材内部を力が伝達されるとき，
+断面$A^-$は$A^+$から，断面$A^+$は$A^-$から圧縮あるいは引張りの力が加えられると考えてよい．
+そこで，$A^−$が$A^+$から受ける力を$N^-$，$A^+$が$A^-$から受ける力を$N^+$とする．
+これらの力は作用-反作用の法則より互いに大きさが等しく逆方向を向くものでなければならない．
+従って$N^+=N^-$となることから，両者をまとめて
+\begin{equation}
+	N^+=N^-=N
+	\label{Npm}
+\end{equation}
+と書き，$N$を$a-a'$断面に働く{\rm \bf 軸力}と呼ぶ．
+軸力は座標軸方向に依らず
+\[
+\begin{array}{cl}
+	N>0 & \Rightarrow 引張り　\\
+	N<0 & \Rightarrow 圧縮
+\end{array}
+\]
+と定義する．軸力は位置によって異なる向きや大きさとなるため，位置$x$の関数として$N(x)$と書く．
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.8\linewidth]{axial_force.eps} 
+	\end{center}
+	\caption{(a)部材内部の着目点における断面$A^{\pm}$と軸力$N$.
+	煩雑になることを避けるために，外力を表す矢印は示していない．
+	(b)着目区間$(a,b)$に作用する力(自由物体図)．} 
+	\label{fig:defN}
+\end{figure}
+\section{力の釣り合い}
+棒部材の$0<a<b<l$となる任意の区間$(a,b)$に着目する．
+部材には分布荷重$p(x)$と集中荷重$\left\{(x_i, f_i)\right\}_{i=1}^n$が外力として作用する場合を考える．
+ニュートンの第二法則によれば，部材が静止状態にあるときこの区間に作用する力の合計(合力)はゼロでなければならない．
+これまでの議論から，区間$(a,b)$に作用する力は分布荷重の合力$P(a,b)$と集中荷重の合力$F(a,b)$，
+区間両端部に働く軸力$N(a)$および$N(b)$である．図\ref{fig:defN}-(b)はその様子を示したもので，
+このように着目領域とそこに作用する全ての力を示した図のことを{\rm \bf 自由物体図(free body diagram)}と呼ぶ．
+部材各部は静止状態にあるため，この図に示された力は互いに相殺され，
+\begin{equation}
+	P(a,b)+F(a,b)+N(b)-N(a)=0
+	\label{eqn:Pab_equib}
+\end{equation}
+でなければならない.式(\ref{eqn:Pab_equib})を区間$(a,b)$についての釣り合い式と呼ぶ．
+$a$と$b$は$a<b$である限り任意だから，例えば$a=0, b=l$とすれば，
+式(\ref{eqn:Pab_equib})は部材全体の釣り合い式を表すことになる．
+後の問題(第\ref{prb_equiv}節)でみるように，この式を利用して軸力の分布や棒部材が支持点から受ける力を決定できる場合がある．
+\\
+
+次に，集中荷重のない場合，すなわち$F(a,b)=0$の場合を考える．このとき，
+$a=x, b=x+\Delta x$として式(\ref{eqn:Pab_equib})の両辺を$\Delta x$で割り, 
+次に$\Delta x\rightarrow 0$の極限をとれば
+\begin{equation}
+	\frac{P(x+\Delta x)-P(x)}{\Delta x}+\frac{N(x+\Delta x)-N(x)}{\Delta x}=0 \,\,
+	\rightarrow
+	\, \,
+	\frac{dP}{dx}+\frac{dN}{dx}=0
+	\label{eqn:Pab_equib_lim}
+\end{equation}
+となる. さらに$P'(x)=p(x)$の関係を用いれば式(\ref{eqn:Pab_equib_lim})より
+\begin{equation}
+	\frac{dN}{dx}+p=0
+	\label{eqn:Nx_equib}
+\end{equation}
+が得られる．式(\ref{eqn:Nx_equib})は{\rm \bf 軸力の釣り合い式}と呼ばれ，
+式(\ref{eqn:Pab_equib})の釣り合い式と区別する際には，{\rm \bf 微分形の釣り合い式}と
+呼ぶこともある．
+式(\ref{eqn:Nx_equib})を軸力$N$に関する微分方程式と考え$N$について解くことで，
+軸力分布を決定できる．このことについては第\ref{BVP}で述べる．
+
+1次元軸力問題では部材断面に垂直に働く単位面積あたりの力:
+\begin{equation}
+	\sigma(x) = \frac{N(x)}{A(x)}
+	\label{eqn:sigma1D_def}
+\end{equation}
+を{\rm \bf 応力}と呼ぶ. ただし，$A(x)$は$x$における部材断面積を表す．
+式(\ref{eqn:sigma1D_def})の定義より，応力の次元は
+単位面積あたりの力である．より正確には，$\sigma$は直応力と呼ばれる
+応力成分の一つであり，このことは次の章で詳しく述べる．
+応力に関する釣り合い方程式は，
+式(\ref{eqn:sigma1D_def})と式(\ref{eqn:Nx_equib})より
+\begin{equation}
+	\frac{d\sigma A}{dx}+p=0
+	\label{eqn:sigx_equib}
+\end{equation}
+となる.
+\subsection{反力}
+力の釣り合い式(\ref{eqn:Pab_equib})や(\ref{eqn:Nx_equib})を用いて軸力$N(x)$が部材の全区間$(0,l)$で求められたとする．
+その場合，外力や強制的に加えられた変形への応答として，部材内部にどのような軸力が発生するかくまなく分かったことになる．
+ここで，軸力の意味をあらためて確認するための例として，$x=\frac{l}{3}$における軸力$N(\frac{l}{3})$について考える．
+これまでの議論より，$N(\frac{l}{3})$は棒部材の区間$(0,\frac{l}{3})$にある部分が，
+区間$(\frac{l}{3},l)$から受ける引張力を意味する．あるいは逆に，区間$(\frac{l}{3},l)$の部分が，
+区間$(0,\frac{l}{3})$の側から受ける引張力と解釈してもよい．
+勿論$N(\frac{l}{3})<0$ならば，負の引張力，つまり圧縮力が生じていることを意味する．
+これに対して$N(0)$と$N(l)$，すなわち，部材端部における軸力については，
+$x<0$や$x>l$の範囲に部材は存在しないので，以上の解釈に修正が必要となる.
+例えば，図\ref{fig:fig2}-(a)のように部材が支持されている場合，$x<0$は固定壁である．
+そのため，$N(0)$は部材が壁から受ける力，あるいは，部材が壁に加える力と理解する必要がある．
+なお，部材を支持する点や支持機構のことを{\rm \bf 支点}と呼ぶ．
+図\ref{fig:fig2}-(a)の例では，左端の固定壁は一つの支点である．
+一般に，支点が部材に加える力を{\bf 支点反力}，あるいは単に{\bf 反力}と呼ぶ．
+この言い方に従えば，$N(0)$は$x=0$における支点反力を与えていると言える．
+一方，部材の右端$x=l$は自由端になっている．そのため$x=l$では部材を固定したり，外部から部材に
+力を加える要因は無く$N(l)=0$となるはずであることが分かる．
+自由端も支点の一種と考えるならば,この状況を$x=l$における支点反力は零と言い換えることができる．
+以上の議論から，部材端部に支点が存在するとき，支点反力は部材端における軸力の値から求められる
+ことが分かる．逆に，部材端に支点があり支点反力が既知ならば，支点部における軸力の値も
+既知と考えることができる．
+\subsection{問題}\label{prb_equiv}
+\begin{enumerate}
+\item
+図\ref{fig:fig3}に示すような左端が固定された長さ$l$の棒部材に集中荷重が加えられているとする．
+このとき, 部材内部に発生する軸力$N$の分布を求め,その結果をグラフとして示せ．
+また, 棒部材が固定壁から受ける力(反力)の大きさと向きを求めよ．
+\item
+図\ref{fig:fig3_2}に示すような左端が固定された長さ$l$の棒部材に分布荷重が加えられているとする．
+このとき, 部材内部に発生する軸力$N$の分布を，同図(b)-(d)のような分布荷重$p(x)$について求め,
+$N(x)$のグラフを描け．また, 棒部材が固定壁から受ける力(反力)の大きさと向きを答えよ．
+\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.6\linewidth]{ex3_force.eps} 
+	\end{center}
+	\caption{軸方向の集中荷重を受ける棒部材．} 
+	\label{fig:fig3}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.6\linewidth]{ex3_force2.eps} 
+	\end{center}
+	\caption{(a)軸方向の分布荷重を受ける棒部材.(b)$\sim$(d)分布荷重の大きさを表すグラフ．} 
+	\label{fig:fig3_2}
+\end{figure}
+\section{境界値問題としての軸力問題}\label{BVP}
+応力$\sigma$とひずみ$\varepsilon$が, 比例係数$E$を用いて
+\begin{equation}
+	\sigma(x) =E(x) \varepsilon (x)
+	\label{eqn:Hooke}
+\end{equation}
+と表されるような物体はフック固体と呼ばれる．
+また，式(\ref{eqn:Hooke})の関係はフックの法則，比例係数$E$は{\bf ヤング率}と呼ばれる. 
+ひずみ$\varepsilon$は無次元の量だから，式(\ref{eqn:Hooke})より，$E$の次元は$\sigma$
+と同じく単位面積あたりの力となる．
+式(\ref{eqn:Hooke})を応力の釣り合い式(\ref{eqn:sigx_equib})に代入し, 
+ひずみと変位の関係(\ref{eqn:e_dudx})を用いれば, 
+変位に関する次の2階常微分方程式:
+\begin{equation}
+	\frac{d}{dx}\left( EA \frac{du}{dx} \right)+p=0
+	\label{eqn:gvn_eq}
+\end{equation}
+が得られる. 微分方程式(\ref{eqn:gvn_eq})を適切な境界条件(支持条件)の元で解けば
+変位分布$u(x)$が求められる．$u(x)$が求められれば，その導関数を計算することで
+ひずみ$\varepsilon$が得られ，ひずみにヤング率や断面積を乗ずることで
+応力$\sigma$と軸力$N$が得られる.
+
+棒部材の支持条件（境界条件）には種々のものが考えられるが，以下のタイプが最も基本的である．
+\begin{itemize}
+\item
+変位境界条件（固定端を含む）: $u(b)=\bar{u}$\\
+	$x=b$は境界位置の座標を, $\bar u$は与えられた変位量を表す．
+	$\bar u=0$は固定端に相当する
+\item
+荷重境界条件（自由端を含む）:$N(b)=\bar{N}$\\
+	 $x=b$は境界位置の座標を, $\bar N$は与えられた外力を表す.
+	$\bar{N}$は, 引張を正とする. $\bar N=0$は自由端に相当する
+\end{itemize}
+例えば，図\ref{fig:fig3}-(a)では，$x=0$で変位境界条件が，
+$x=l$では荷重境界条件が課されており，具体的には
+\[
+	u(0)=0, \ \ N(l)=F
+\]
+が要請されているということができる．
+図\ref{fig:fig3_2}-(a)でも左端には変位境界条件が，右端には荷重境界条件
+が課されるが，この場合は，
+\[
+	u(0)=0, \ \ N(l)=0
+\]
+が満足されるべき条件となる．
+
+断面剛性$EA$が場所によらず一定のとき,式(\ref{eqn:gvn_eq})は
+\begin{equation}
+	EA\frac{d^2u}{dx^2}+p=0
+	\label{eqn:gvn_eq2}
+\end{equation}
+と,定数係数の2階線形常微分方程式となる.
+\subsection{問題}
+図\ref{fig:fig4}に示す荷重条件の異なる(a)から(c)の棒部材について，
+変位$u$と軸力$N$の分布を求め，$u$と$N$のグラフを描け．
+また, それぞれの場合について,支点反力を求めよ．なお, 図中に示した
+$p(x)$は分布力を意味し，断面剛性$EA$は場所によらず一定とする．
+\begin{figure}[h]
+	\begin{center}
+%	\includegraphics[width=0.9\linewidth]{ex4_ODE.eps} 
+	\end{center}
+	\caption{軸方向の外力を受ける棒部材.$p=p(x)$は分布力を，$p_0$は与えられた定数を意味し, 
+	断面剛性$EA$は場所によらず一定とする．} 
+	\label{fig:fig4}
+\end{figure}
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+\section{力の単位}
+科学,工学の分野では通常MKS単位系で各種の量が表される.すなわち, 
+長さはメートル[m], 質量はキログラム[kg], 時間は秒[s]が単位として用いられる.
+力は,ニュートンの第二法則によれば,質量×加速度の次元を持つことから, 
+その単位は[kg$\cdot$m/s$^2$]であり,これをニュートン[N]と呼ぶ.
+これに対して日常生活では,キログラム重[kgf]が力の単位としてしばしば
+用いられる.キログラム重は, 質量1[kg]の物体が地球上で受ける重力の
+大きさとして定義される.従って,Nとkgfの換算は
+\begin{center}
+	1[kgf]=1[kg] $\times$ (重力加速度  $g\simeq$9.8[m/s$^2$])=9.8[N]
+\end{center}
+で行うことができる.一方,応力や圧力の次元は,単位面積あたりの力である.よって
+その単位は[N/m$^2$]であり,これをパスカル[Pa]と呼ぶ.
+問題となる数量が非常に大きい,あるいは小さいとき,
+その数値を適当な接頭辞を用いて表すことが多い.例えば,
+10$^6$[Pa]は1[MPa]（メガパスカル）, 10$^{-6}$[s]は1[$\mu$s](マイクロ秒)等と
+書くことができる.
+\clearpage
+\section{補足1}
+ニュートンの三法則
+\begin{itemize}
+\item
+第一法則:
+物体に力が作用しないとき，その物体が静止あるいは等速度運動を続けることを観測できる座標系(慣性座標系)が存在する
+		(慣性の法則，あるいは慣性座標系の存在)．
+\item
+第二法則:
+物体の運動量の時間変化率と質量の積は，物体に加えられた力に等しい(運動の法則)．
+\item
+第三法則:
+2つの物体が相互に力を及ぼし合うとき，一方の物体が他方の物体に加える２つの力の組は，互いに大きさが等しく逆方向を向く(作用反作用の法則)．
+\end{itemize}
+
+\section{補足2}
+%\subsubsection{接頭辞}
+\begin{table}[h]
+\begin{center}
+\caption{よく利用される数値に関する接頭辞(metric prefix)}
+\label{tbl:prefix}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+f & p & n & $\mu$ & m & & k & M & G & T & P \\
+\hline
+フェムト & ピコ& ナノ & マイクロ & ミリ & & キロ & メガ& ギガ& テラ & ペタ\\
+\hline
+$10^{-15}$ &
+$10^{-12}$&
+$10^{-9}$ &
+$10^{-6}$ &
+$10^{-3}$ &
+$10^0$ &
+$10^3$ &
+$10^6$ &
+$10^9$ &
+$10^{12}$&
+$10^{15}$ 
+\end{tabular}
+\end{center}
+\end{table}
+%\subsubsection{ギリシャ文字}
+\begin{table}[h]
+\begin{center}
+\caption{ギリシャ文字とその読み方}
+\begin{tabular}{c|c|c|c}
+大文字 & 小文字 & 読み方(英語)　&読み方（日本語）\\
+\hline \hline
+$A$ & $\alpha$ & alpha & アルファ \\
+\hline
+$B$ & $\beta$ & beta & ベータ \\
+\hline
+$\Gamma$ & $\gamma$ & gamma & ガンマ\\
+\hline
+$\Delta$ & $\delta$ & delta & デルタ\\
+\hline
+$E$ & $\epsilon, \varepsilon$ & epsilon & イプシロン \\
+\hline
+$Z$ & $\zeta$ & zeta & ゼータ \\
+\hline
+$H$ & $\eta$ & eta & イータ \\
+\hline
+$\Theta$ & $\theta$ & theta & シータ \\
+\hline
+$I$ & $\iota$ & iota & イオタ \\
+\hline
+$K$ & $\kappa$ & kappa & カッパ\\
+\hline
+$\Lambda$ & $\lambda$ & lambda & ラムダ \\
+\hline
+$M$ & $\mu$ & mu & ミュー \\
+\hline
+$N$ & $\nu$ & nu & ニュー\\
+\hline
+$\Xi$ & $\xi$ & xi & グザイ\\
+\hline
+$O$ & $o$ & omicron & オミクロン\\
+\hline
+$\Pi$ & $\pi,\varpi$ & pi & パイ \\
+\hline
+$P$ & $\rho$ & rho & ロー \\
+\hline
+$\Sigma$ & $\sigma$ & sigma & シグマ\\
+\hline
+$T$ & $\tau$ & tau &タウ \\
+\hline
+$\Upsilon$ & $\upsilon$ & upsilon & ウプシロン\\
+\hline
+$\Phi$ & $\phi, \varphi$ & phi &ファイ \\
+\hline
+$X$ & $\chi$ & chi & カイ \\
+\hline
+$\Psi$ & $\psi$ & psi & プサイ \\
+\hline
+$\Omega$ & $\omega$ & omega & オメガ\\
+\end{tabular}
+\end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%\begin{figure}[here]
+\begin{figure}
+	\vspace{-3mm}
+	\begin{center}
+%	\includegraphics[width=0.45\linewidth]{fig1.eps} 
+	\end{center}
+	\vspace{-5mm}
+	\caption{一端を固定壁に支持された棒部材とそのひずみ分布.} 
+	\label{fig:fig1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
