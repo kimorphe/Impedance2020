@@ -10,7 +10,7 @@ git add Src/makefile
 git add 0129/*.py
 # Latex Source
 git add Tex/*.tex
-git add Tex/*.makefile
+git add Tex/makefile
 git add Tex/*.svgz
 git add Tex/*.cls
 
