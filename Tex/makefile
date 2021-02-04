@@ -1,7 +1,7 @@
 thesis.pdf: thesis.dvi 
 	dvipdfmx thesis.dvi
 
-thesis.dvi: thesis.tex 1_intro.tex 2_clay.tex 3_theory.tex\
+thesis.dvi: thesis.tex 1_intro.tex 2_clay.tex 3_theory.tex 4_experiment.tex\
 	Figs/fig3_1.eps Figs/fig3_2.eps Figs/fig3_3.eps Figs/fig3_4.eps Figs/fig3_5.eps Figs/fig3_6.eps Figs/fig3_7.eps Figs/fig3_8.eps
 	platex thesis.tex
 

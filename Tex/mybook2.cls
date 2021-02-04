@@ -508,7 +508,8 @@
 \newcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}%
    {.5\Cvs \@plus.3\Cvs}%
-   {\reset@font\large\bfseries}}
+   %{\reset@font\large\bfseries}}
+   {\reset@font\normalsize\bfseries}}
 \newcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}%
    {.5\Cvs \@plus.3\Cvs}%
