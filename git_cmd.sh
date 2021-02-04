@@ -13,6 +13,9 @@ git add Tex/*.tex
 git add Tex/makefile
 git add Tex/*.svgz
 git add Tex/*.cls
+git add Tex/*.txt
+git add Tex/*.sh
+git add Tex/Figs/*.svgz
 
 git commit 
 

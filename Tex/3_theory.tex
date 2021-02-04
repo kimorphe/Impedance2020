@@ -1,0 +1,194 @@
+\section{インピーダンス}
+電気化学インピーダンス法では試料に交流電圧を印加し、その際に発生する応答電流を計測する。
+電流$I$と電圧$V$の関係が線形システムとみなせるならば、両者の関係は
+\begin{equation}
+	V(\omega)= Z(\omega) I(\omega), \ \ (\omega=2\pi f)
+	\label{eqn:I2V}
+\end{equation}
+と表すことができる。ただし$\omega$と$f$は、それぞれ交流電圧の角周波数[rad/s]と周波数[Hz]を
+それぞれ表す。なお，時間因子$e^{i\omega t}$は両辺に共通のため省略している．
+このとき電流と電圧の比となる$Z$はインピーダンスと呼ばれる．
+$Z$も周波数の関数であることから，$Z$はインピーダンススペクトルと呼ばれることもある。
+インピーダンス$Z(\omega)$は一般に複素数で，虚数単位を$i$として
+\begin{equation}
+	Z(\omega)=Z'(\omega)+iZ''(\omega)
+	\label{eqn:Z_cmplx}
+\end{equation}
+と実部，虚部を書き，$Z'$をレジスタンス，$Z''$をリアクタンスと呼ぶ．
+インピーダンスは，指数関数を用いて
+\begin{equation}
+	Z(\omega)=\left| Z \right|(\omega)e ^{i\phi(\omega)}
+	\label{eqn:}
+\end{equation}
+と表すこともできる．ここで$\phi$は複素数$Z$の偏角を表し，
+$\phi$は電流と電圧の間の位相遅れを意味する．
+%
+\section{インピーダンススペクトルの表示方法}
+インピーダンススペクトルは目的に応じて二種類の表示方法が主として用いられる．
+1つめの方法は，横軸に周波数を，縦軸にインピーダンスの大きさ$|Z|$をとり
+両対数グラフとして表示するものである．
+このとき，同時に，横軸を体枢軸として周波数に、縦軸を$Z$の偏角$\phi$としたグラフを
+合わせて見ることで，インピーダンススペクトルの完全な情報を示すことができる.
+これらの2つのグラフによる表示をBode(ボーデ)線図と呼ぶ．
+もう一つの方法は，横軸にレジスタンス$R$を，縦軸をリアクタンスの符号を反転
+させた$-X$とした複素平面にインピーダンスをプロットするものである．
+各周波数におけるインピーダンスをこのような複素平面上にプロットすれば,
+インピーダンスが複素平面上の曲線として表される．このような
+インピーダンススペクトルの表示はNyquist(ナイキスト)線図と呼ばれる．
+Nyquist線図は，インピーダンススペクトの特徴をしばしば直感的にわかり易く示してくれる．
+ただし，周波数に対する依存性はNyquist線図上で明示的に示されないため，周波数との
+関係を同時に見る必要がある場合には，Bode線図を同時に用いる必要がある．
+%
+\section{等価回路}
+実験やシミュレーションで得られたインピーダンススペクトルを再現できる
+簡単な電気回路を，対象とする試料やモデルの等価回路と呼ぶ．
+等価回路を構成する最も基本的な回路素子にあ，抵抗($R$)，コンデンサ$(C)$，
+インダクタンス$(L)$の3つがある．
+回路が理想的な抵抗だけからなる場合，電流と電圧の関係はオームの法則により
+\begin{equation}
+	V=RI
+	\label{eqn:Ohom}
+\end{equation}
+で与えられる．従ってこの場合，インピーダンスは$Z=R$で周波数に依らない。
+コンデンサだけからなる回路の場合、
+\begin{equation}
+	V=\frac{Q}{C}
+	\label{eqn:Q_CV}
+\end{equation}
+より，
+\begin{equation}
+	\frac{dV}{dt}=i\omega V =\frac{1}{C}\frac{dQ}{dt}=\frac{I}{C}
+	\label{eqn:}
+\end{equation}
+より，インピーダンスは
+\begin{equation}
+	Z=\frac{1}{i\omega C}
+	\label{eqn:Zc}
+\end{equation}
+となり，インピーダンスはリアクタンス成分だけを持つ．
+インダクタンスのみの回路であれば，電流と起電力の関係は
+\begin{equation}
+	V=-L\frac{dI}{dt}=-i\omega LI 
+	\label{eqn:}
+\end{equation}
+より
+\begin{equation}
+	Z=i\omega L
+	\label{eqn:}
+\end{equation}
+で，インピーダンスはコンデンサと同様，リアクタンス成分だけをもつ．
+以上より，抵抗，コンデンサー，インダクタンスのみからなる回路の
+ナイキスト線図とボード線図は図\ref{fig:}のようになる．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig3_1.eps} 
+	\end{center}
+	\caption{
+		抵抗のみからなるボード線図(a),(b)とナイキスト線図(c).
+	} 
+	\label{fig:fig3_1}
+\end{figure}
+%--------------------
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig3_2.eps} 
+	\end{center}
+	\caption{
+		コンデンサのみからなるボード線図(a),(b)とナイキスト線図(c).
+	} 
+	\label{fig:fig3_2}
+\end{figure}
+%--------------------
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig3_3.eps} 
+	\end{center}
+	\caption{
+		インダクターのみからなるボード線図(a),(b)とナイキスト線図(c).
+	} 
+	\label{fig:fig3_3}
+\end{figure}
+%--------------------
+以上に述べた基本的な回路素子を組み合わせることで，より多様な
+インピーダンススペクトルを表現することができる．
+以下では，そのような例のうち，本研究に関連の深い回路のインピーダンス
+スペクトルを示す．
+\section{本研究でインピーダンススペクトルの解釈に用いる回路}
+抵抗$R$とコンデンサ$C$を並列に接続した回路の合成インピーダンスは
+\begin{equation}
+	\frac{1}{Z}=\frac{1}{R} + i\omega C \ \ 
+	\Rightarrow \ \ Z =\frac{R}{1+i\omega RC}
+	\label{eqn:RC_para}
+\end{equation}
+で与えられる．従って，レジスタンス$Z'$とリアクタンス$Z''$は，それぞれ
+\begin{equation}
+	Z'=\frac{R}{1+(\omega RC)^2}, \ \ 
+	Z''=-\frac{i\omega RC}{1+(\omega R^2C)^2} 
+	\label{eqn:}
+\end{equation}
+となり，これらの式から$\omega$を消去すれば，
+\begin{equation}
+	\left( Z'-\frac{R}{2}\right)^2 +\left(Z''\right)^2 =\left( \frac{R}{2}\right)^2
+	\label{eqn:}
+\end{equation}
+が得られ，式(\ref{eqn:RC_para})のナイキスト線図は，中心$\left( 0, \frac{R}{2}\right)$，
+半径$\frac{R}{2}$の半円を描くことが分かる．
+
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3_4.eps} 
+	\end{center}
+	\caption{
+		caption.
+	} 
+	\label{fig:fig3_4}
+\end{figure}
+%--------------------
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3_5.eps} 
+	\end{center}
+	\caption{
+		caption.
+	} 
+	\label{fig:fig3_5}
+\end{figure}
+%--------------------1
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3_6.eps} 
+	\end{center}
+	\caption{
+		caption.
+	} 
+	\label{fig:fig3_6}
+\end{figure}
+%--------------------
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3_7.eps} 
+	\end{center}
+	\caption{
+		caption.
+	} 
+	\label{fig:fig3_7}
+\end{figure}
+%--------------------
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3_8.eps} 
+	\end{center}
+	\caption{
+		caption.
+	} 
+	\label{fig:fig3_8}
+\end{figure}
+%--------------------

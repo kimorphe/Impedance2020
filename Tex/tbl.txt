@@ -1,0 +1,10 @@
+\begin{table}[h]
+\begin{center}
+\caption{ギリシャ文字とその読み方}
+\begin{tabular}{c|c|c|c}
+ A1 & A2 & A3 & A4 \\
+\hline \hline
+\end{tabular}
+\end{center}
+\end{table}
+

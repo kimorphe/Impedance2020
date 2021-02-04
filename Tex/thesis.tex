@@ -1,5 +1,6 @@
 \documentclass[11pt,a4j]{mybook2}
 \usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{showkeys}
 %\documentclass[11pt,a4j]{jbook}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx,titlesec}
@@ -82,16 +83,11 @@ of Unsaturated Compacted Clay
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{はじめに}
-%\makeatletter
-%\def\@oddhead{\hfil -\thepage- \hfil}
-%\makeatother
-%\makeatletter
-%\def\@oddfoot{\hfil -\thepage- \hfil}
-%\makeatother
-%\section{変形に関する量}
-\input{1_intro.tex}
-\chapter{鉱物学的にみた粘土結晶}
-\input{2_clay.tex}
+	\input{1_intro.tex}
+\chapter{スメクタイト族粘土の結晶構造，分類，特徴}
+	\input{2_clay.tex}
+\chapter{電気化学インピーダンス法の基礎}
+	\input{3_theory.tex}
 \end{document}
 %\begin{figure}[here]
 \begin{figure}
