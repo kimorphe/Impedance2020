@@ -24,7 +24,14 @@ class FILE_LIST:
             Key_Num=dict(zip(keys,range(N[1])))
             del(D[0])   # remove header line
             del(D[0])   # remove header line
-            del(D[-1])   # remove header line
+            k=0
+            k2del=[]
+            for line in D:
+                if line[0]=="": 
+                    k2del.append(k)
+                k+=1
+            #print(k2del)
+            del(D[k2del[0]:k2del[-1]+1])
             N=np.shape(D)
             nkeys=N[1]
             nfile=N[0]
@@ -68,7 +75,6 @@ if __name__=="__main__":
         print(fname)
         FL=FILE_LIST(dir_name,fname)
         A=FL.shape()
-        print(A)
         #print(FL.get_elem("m_dry",5))
         #print(FL.get_elem("name",5))
         #print(FL.get_line(0))
@@ -83,6 +89,7 @@ if __name__=="__main__":
 
     w=np.linspace(0.12,0.25)
     Sr=np.linspace(1.0,0.3,8)
+    print(Sr)
     for sr in Sr:
         rho_d=Rho_Dry(sr,w)
         ax.plot(w,rho_d,"--k",label="Sr="+str(sr),linewidth=1)

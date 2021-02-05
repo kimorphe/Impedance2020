@@ -60,23 +60,24 @@ class IMP:
 
 if __name__=="__main__":
     dir_name="./"
-    dates=["0128"]  # w15
-    #dates=["0201"]  # w17.5
-    #dates=["0126"]  # w20
-    #dates=["0202"]  # w22
-    #dates=["0129"]  # w25
+    #date="0128"; name="w15"  
+    #date="0201"; name="w22" 
+    #date="0126"; name="w20"
+    #date="0202"; name="w17"
+    date="0129"; name="w25"  
 
     # dry density-water content plot
     fig=plt.figure()
     ax=fig.add_subplot(111)
     ax.grid(True)
 
+    fsz=14
     # Nyquis Plot
     fig2=plt.figure();
     bx=fig2.add_subplot(111)
     bx.grid(True)
-    bx.set_xlabel(r"Re{Z} [$\Omega$]",fontsize=12)
-    bx.set_ylabel(r"Im{Z} [$\Omega$]",fontsize=12)
+    bx.set_xlabel(r"Re{Z} [$\Omega$]",fontsize=fsz)
+    bx.set_ylabel(r"-Im{Z} [$\Omega$]",fontsize=fsz)
     bx.set_aspect(1.0)
 
     # Bode  Plot
@@ -88,32 +89,30 @@ if __name__=="__main__":
 
     
     Z=IMP() # Measured Impedance 
-    for date in dates:  # for each data folder
-        fname="datafiles"+date+".csv"
-        print(fname)
-        FL=dtf.FILE_LIST(dir_name,fname)
-        A=FL.shape()
-        #print(FL.get_col("ID"))
 
-        rho_dry=np.array(FL.get_col("rho_dry"))
-        rho_dry=rho_dry.astype(float)
-        wt=np.array(FL.get_col("water_content"))
-        wt=wt.astype(float)
-        ax.plot(wt,rho_dry,"o",markersize=8)
+    fname="datafiles"+date+".csv"
+    print(fname)
+    FL=dtf.FILE_LIST(dir_name,fname)
+    A=FL.shape()
 
-        data_dir=date
-        USE=FL.get_col("use")
-        FNAME=FL.get_col("name")
-        k=0
-        for use in USE: # for each data file
-            if int(use)==1:
-                fname=data_dir+"/"+FNAME[k]+".csv"
-                print(fname)
-                Z.load(fname)
-                #Z.diff(); Z.ftrim(); imax=Z.icut
-                Z.Bode(bx1,bx2,cut=True)
-                Z.Nyquist(bx,cut=True,name=fname)
-            k+=1
+    rho_dry=np.array(FL.get_col("rho_dry"))
+    rho_dry=rho_dry.astype(float)
+    wt=np.array(FL.get_col("water_content"))
+    wt=wt.astype(float)
+    ax.plot(wt,rho_dry,"o",markersize=8)
+    data_dir=date
+    USE=FL.get_col("use")
+    FNAME=FL.get_col("name")
+    k=0
+    for use in USE: # for each data file
+        if int(use)==1:
+            fname=data_dir+"/"+FNAME[k]+".csv"
+            print(fname)
+            Z.load(fname)
+            #Z.diff(); Z.ftrim(); imax=Z.icut
+            Z.Bode(bx1,bx2,cut=True)
+            Z.Nyquist(bx,cut=True,name=fname)
+        k+=1
 
     #bx.legend()
     w=np.linspace(0.12,0.25)
@@ -122,15 +121,28 @@ if __name__=="__main__":
         rho_d=dtf.Rho_Dry(sr,w)
         ax.plot(w,rho_d,"--k",label="Sr="+str(sr),linewidth=1)
 
-    fsz=14
     ax.set_xlabel("water content",fontsize=fsz)
     ax.set_ylabel("dry density [g/cm$^3$]",fontsize=fsz)
     ax.tick_params(labelsize=fsz)
     ax.set_xlim([0.12,0.25])
     ax.set_ylim([1.2,2.0])
 
+    label=name+" series ($w$="+str(wt[0])+"%)"
+    bx.set_title(label,fontsize=fsz)
+    bx1.set_title(label,fontsize=fsz)
+    #bx2.set_title(label,fontsize=fsz)
+    bx2.set_xlabel("frequency [Hz]",fontsize=fsz)
+    bx1.set_ylabel("|Z|",fontsize=fsz)
+    bx2.set_ylabel(r"$\theta$[deg]",fontsize=fsz)
+    bx.tick_params(labelsize=fsz)
+    bx1.tick_params(labelsize=fsz)
+    bx2.tick_params(labelsize=fsz)
+    x1,x2=bx.get_xlim()
+    bx.set_xlim([x1,x1+500])
+    bx.set_ylim([0,300])
+
     
-    fig2.savefig("Nyquist.png",bbox_inches="tight")
-    fig3.savefig("Bode.png",bbox_inches="tight")
+    fig2.savefig("Nyq"+date+".png",bbox_inches="tight")
+    fig3.savefig("Bode"+date+".png",bbox_inches="tight")
     plt.show()
 
