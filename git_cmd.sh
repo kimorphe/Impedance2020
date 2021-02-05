@@ -8,6 +8,7 @@ git add Src/*.cpp
 git add Src/*.h
 git add Src/makefile
 git add 0129/*.py
+git add *.py
 # Latex Source
 git add Tex/*.tex
 git add Tex/makefile
@@ -17,7 +18,7 @@ git add Tex/*.txt
 git add Tex/*.sh
 git add Tex/Figs/*.svgz
 # Excel Files
-*.xlsx
+git add *.xlsx
 
 git commit 
 
