@@ -19,6 +19,7 @@ git add Tex/*.sh
 git add Tex/Figs/*.svgz
 # Excel Files
 git add *.xlsx
+git add *.csv
 
 git commit 
 
