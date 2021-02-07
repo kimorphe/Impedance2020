@@ -43,8 +43,8 @@ class FILE_LIST:
     def shape(self):
         n1=self.nkeys
         n2=self.nfile
-        print("Number of keys=",n1)
-        print("Number of lines=",n2)
+        #print("Number of keys=",n1)
+        #print("Number of lines=",n2)
         return([n1,n2])
     def get_elem(self,key,line):
         icol=self.Key_Num[key]

@@ -1,0 +1,134 @@
+\section{等価回路の推定}
+図\ref{fig:fig5_1}に，本研究で得られた典型的なナイキスト線図を示す。
+黒の実線で示した計測結果には，低周波側に大きな容量性の半円(i)のおよそ半分が現れている．
+高周波側にも容量性半円の一部と思われる箇所がわずかに見られ，図ではこれに青の破線で
+想定される半円を描き込んである。実際、100KHZ以上の周波数範囲まで計測を行うと，
+この部分にもはっきりとした半円が現れることは，別途実験を行い確認している．
+ここでは，物質移動に関係する長い緩和時間を持つ現象に興味があるため，
+低周波側の半円(i)について調べる．
+円弧状の半円を示す等価回路の一つはRC並列回路である．
+ただし，RC並列回路は完全な半円でナイキスト線図を描く．
+一方，ここでの計測結果では、縦方向に扁平な半円となっているため，
+RC並列回路でのフィッティグはできず，Cole-ColeプロットやCole-Davidsonプロット
+の使用がより適切と考えられる。
+いずれのプロットを選択するかにあたり，半円(i)の高周波側での挙動を見ると
+図\ref{fig:fig5_1}に緑の実線で示した箇所で直線的に変化をしている箇所があり，
+この部分の実数軸に対する傾き$\alpha$は，およそ60$\sim$70度になっている．
+直線的なインピーダンススペクトルはCPE素子で表現することができるため，
+このことはCPE素子を含む等価回路を想定すべきであることを示唆している．
+Cole-ColeプロットはCPEと抵抗の並列接続で与えられることからこの条件を満足する．
+一方，Cole-Davidsonプロットは，Cole-Coleプロットと類似したナイキスト線図を与えるが，
+有限個のCPE素子では表現することができない．Cole-Davidonプロットは，半円の左側半分(高周波側)が
+右側に比べてより歪んだ形を表すことが可能だが，Cole-Coleプロットとの差が明らかになるのは
+高周波側での傾きが図\ref{fig:fig5_1}の$\alpha$よりもかなり小さくなってからである．
+以上のことから，ここではCole-Coleプロットを用いて，実験で得られたインピーダンス
+スペクトルのフィッティングを行う．
+なお，ナイキスト線図上の直線的な変化はワールブルグインピーダンスにも現れる．
+しかしながら，ワールブルグインピーダンスの直線部分の傾きは45$^\circ$のため，
+ワールブルグインピーダンスだけでは，今回の実験結果を再現することはできない．
+この点でも，Cole-Coleプロットの利用が適切であるということができる．
+
+Cole-Coleプロットのインピーダンスは，第3章で述べたように式(\ref{eqn:CC})で与えられる．
+これに，抵抗を直列に接続すれば，実数軸上の任意の位置になる半円状のスペクトルへの
+フィッティングを行うことができる．従って，ここで用いるインピーダンスは
+\begin{equation}
+	Z=R_0 +\frac{R_{ct}}{1+\left( i\omega R_{ct}C\right)^p}
+	\label{eqn:CC_R0}
+\end{equation}
+と表すことができる．
+ここに，$R_0$は直列接続した抵抗成分の抵抗を，$R_{ct}$と$C$は
+RC並列回路の抵抗とコンデンサ成分の静電容量をそれぞれ表す．
+式(\ref{eq:CC_R0})は次のように書き直すことができる．
+\begin{equation}
+	Z=R_0 +\frac{R_{ct}}{1+\left( i\omega \right)^pT_{CPE}}
+	\label{eqn:R_CPE}
+\end{equation}
+ただし，
+\begin{equation}
+	T_{CPE}=R_{ct}^{p-1}C^{p}
+	\label{eqn:T_CPE}
+\end{equation}
+である．式(\ref{eqn:R_CPE})は図\ref{fig:fig5_2}の回路の合成インピーダンス
+であることから，この図に示した抵抗aとCPE(b)-抵抗(c)の直-並列回路が
+本研究で用いる等価回路となる．
+なお，$T_{CPE}$はCPE素子の時定数で，その次元は
+\begin{equation}
+	[T_{CPE}] ={\rm [ F\cdot s^{p-1}]}
+	\label{eqn:}
+\end{equation}
+で，指数$p$が1のとき，コンデンサーの静電容量と単位も含めて一致する．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_1.eps} 
+	\end{center}
+	\caption{
+		計測で得られたインピーダンススペクトルの特徴．	
+	} 
+	\label{fig:fig5_1}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{Figs/fig5_2.eps} 
+	\end{center}
+	\caption{
+		インピーダンススペクトルのフィッティングに用いる等価回路．
+		$R_0,R_{ct}$および$T_{CPE}$はそれぞれの回路素子の素子定数を表す．
+	} 
+	\label{fig:fig5_2}
+\end{figure}
+%--------------------
+%--------------------
+\section{回路定数の推定}
+\section{結果の解釈}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_3.eps} 
+	\end{center}
+	\caption{
+		等価回路に含まれる直列抵抗成分$R_0$．
+	} 
+	\label{fig:fig5_3}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_4.eps} 
+	\end{center}
+	\caption{
+		等価回路に含まれる並列抵抗成分$R_{ct}$．
+	} 
+	\label{fig:fig5_4}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_5.eps} 
+	\end{center}
+	\caption{
+		等価回路に含まれるコンデンサの静電容量$C$．
+	} 
+	\label{fig:fig5_5}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_6.eps} 
+	\end{center}
+	\caption{
+		等価回路に含まれるCPE素子の指数$p$．
+	} 
+	\label{fig:fig5_6}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig5_7.eps} 
+	\end{center}
+	\caption{
+		等価回路に含まれるCPE素子の時定数$T_{CPE}$．
+	} 
+	\label{fig:fig5_7}
+\end{figure}

@@ -1,4 +1,4 @@
-ID,name,year,month,day,time,gauge,rebound,m_wet,D,h,volume,rho_wet,m_dry,m_water,rho_dry,rho_clay,water_content,Vw,Vs,porosity,saturation,use
+ID,name,year,month,day,time,gauge,rebound,m_wet,diameter,height,volume,rho_wet,m_dry,m_water,rho_dry,rho_clay,water_content,Vw,Vs,porosity,saturation,use
 -,-,yy,mm,dd,tt,[mm],[mm],[g],[mm],[mm],[mm3],[g/cm3],[g],[g],[g/cm3],[g/cm3],-,[mm3],[mm3],[%],[%],0/1
 1,data1,2021,1,26,17:48,9.67,0.4,11.26,29.31,9.37999999999999,6328.8 ,1.78 ,9.47,1.79,1.50 ,2.70 ,0.189,1790,3507.4 ,0.45,0.63,0
 2,data2,2021,1,26,18:04,9.67,0.4,11.26,29.31,9.37999999999999,6328.8 ,1.78 ,9.47,1.79,1.50 ,2.70 ,0.189,1790,3507.4 ,0.45,0.63,1
