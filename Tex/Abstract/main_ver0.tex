@@ -1,0 +1,554 @@
+﻿%%#!platex
+%
+% Example of Japanese Paper of JSCE
+% for LaTeX2e users
+%
+% revised on 4/25/2014
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% もし jis フォントメトリックを使う場合は，以下をアンコメントしてください．
+% \DeclareFontShape{JY1}{mc}{m}{n}{<-> s * jis}{}
+% \DeclareFontShape{JY1}{gt}{m}{n}{<-> s * jisg}{}
+%
+\documentclass{jsce}
+%
+\usepackage{epic,eepic,eepicsup}
+%\usepackage{graphicx,multicol}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{amsmath}
+%\usepackage{showkeys}
+\usepackage{setspace}
+%  amsを使う方は以下をアンコメントしてください．
+%\usepackage{amssymb,amsmath}
+% 英語はサポートしているかどうか不明
+% \inenglish
+% 学会サンプルに times とあるので指定しておきます
+\usepackage{times}
+%
+\finalversion
+\pagestyle{empty}
+%
+\title{
+圧縮成形された不飽和粘土の\\
+電気化学インピーダンス特性に関する研究
+}%
+\endtitle{
+A STUDY ON THE PROPAGATION CHARACTERISTICS OF SURFACE WAVES IN GRANITE BASED ON ULTRASONIC MEASUREMENTS
+}
+%
+% emailアドレスのフォントをタイプライター体にしたい方は次行をアンコメント
+% \emailstyle{\ttfamily}
+% emailアドレスを公開される方は，
+%% \thanks{○○○○○○\email{your_name@foo.ac.jp}}のようにしてください．
+%
+\author{
+10429223 佐々木 絢悟
+\thanks{岡山大学環境理工学部・環境デザイン工学科 (〒700-8530 岡山県岡山市北区3丁目1番地1号)}
+}
+\endauthor{Kengo SASAKI}
+%
+\abstract{
+\small
+本研究は圧縮成形された不飽和粘土の電気化学インピーダンス特性を実験によって調べたものである．
+実験には，Na型モンモリロナイトと純水を混合して圧縮し，ペレット状に成形した供試体を用いた．
+供試体は5つの異なる含水比で作成し，各々，圧縮途上で所定の厚みにおいてインピーダンスを計測する
+ことで水分量と乾燥密度の影響を調べた. 実験の結果，不飽和粘土のインピーダンススペクトルは
+Cole-Coleプロットで近似できることが分かった．
+Cole-Coleプロットの等価回路には，互いに並列接続された抵抗とCPE(constant phase element)が
+含まれ，CPEは2つの素子定数を持つ．そこで，これら2つの定数をカーブフィッテイングを行って
+求めたところ，いずれの定数も含水比と乾燥密度に関して明確な相関を示すことが明らかとなった．
+特に，CPE定数の一つである指数$p$は特異な挙動を示し，含水比が$20\%$を超えるときには乾燥密度
+と正の相関を持つが，それ以下では負の相関を示すことが分かった．このことは，
+指数$p$は不飽和粘土の間隙や間隙水の配置に関する微視的な構造変化を捉える指標に
+なりうるという意味で重要な知見と言える．
+}
+%
+\keywords{compacted clay, montmorillonite, electrochemical impedance, water content, bulk dry density}
+%
+\endabstract{% Yes blank line
+\normalsize
+This study investigates the propagation characteristics of surface wave traveling in a random heterogeneous medium. 
+For this purpose, ultrasonic measurements are performed on a coarse-grained granite block as a typical randomly heterogeneous medium. In the ultrasonic testing, a line-focus transducer is used to excite ultrasonic waves, whereas a laser Doppler vibrometer is used to pickup the ultrasonic motion on the surface of the granite block. The measured waveforms are analysed in the frequency domain to evaluate the travel-time　for each measurement point based on the Fermat's principle. From the ensemble of travel-times obtained thus, 
+the probability distribution of the travel-time is established as a function of travel-distance. The uncertainty of the travel-time and its spatial evolution are then investigated using the standard deviation of the travel-time as a measure of the uncertainty. As a result, it was found that the uncertainty is 
+approximately proportional to the mean travel-time divided by the square root travel-distance.This is a finding that would be useful for stochastic modeling of the waves in random heterogeneous media. 
+}
+%
+% \titlepagecontrol{1}
+%
+%\receivedate{2019．7．19}
+% \receivedate{January 15， 1991}
+%
+% \def\theenumi{\alph{enumi}}  % もし enumerate 最初の箇条を (a) と
+% \def\labelenumi{(\theenumi)} % したい場合・・・
+%
+\begin{document}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{はじめに}
+高レベル放射性廃棄物の地層処分では，ベントナイト緩衝材の利用が計画されている．
+ベントナイト緩衝材には，廃棄体と処分坑の空隙を充填することや，地下水の浸透を抑制すること，
+漏洩した放射性核種の吸着や移行遅延といった役割を果たすことが期待されている．
+そのため，ベントナイトの膨潤性や透水性，物質輸送特性を正確に理解することは，
+緩衝材としての機能が適切に発揮されるよう緩衝材の設計や施工を行う上で重要である，
+これらベントナイトの特性は，間隙水分の状態や，間隙の量と構造によって変化する．
+従って，間隙構造や水分状態の把握は、膨潤や透水、物質輸送メカニズムの理解に
+向けた第一歩となる．しかしながら，ベントナイトの主成分であるモンモリロナイトは
+ナノメートルスケールの微細鉱物で、間隙や水分の状態を実験的に直接観測や
+可視化することは困難である．このことから，例えば，X線を使って粘土分子の
+積層構造を調べることや，分子動力学法等の数値シミュレーションによる解析で，
+間隙中の拡散挙動を調べるといった取り組みが行われてきた．
+
+ 物質の内部構造を調べる簡単な方法の一つに電気化学インピーダンス法がある．
+この方法は，試料に交流電圧を印加したときの応答電流を計測し，対象物のインピーダンスを求める．
+これを周波数を掃引して行うことで，インピーダンススペクトルを取得し，スペクトルの特徴から
+物質の内部構造を推定する．インピーダンスはイオン等の荷電物質の易動度に関する量であることから，
+インピーダンスを介して、試料内部の拡散経路についての情報を得られる可能性がある。
+粘土の場合について言えば，主たる物質の拡散経路は間隙と間隙水のネットワークであることから，
+インピーダンス法により，間隙構造について調べることができる可能性がある。
+しかしながら、固体あるいは半固体状粘土試料のインピーダンス特性を調べた
+研究はこれまでほとんど行われていない．そこで本研究では、不飽和粘土の
+インピーダンス特性を把握することを目的として，圧縮成形して粘土試料のインピーダンス計測を
+行った．特に，水分とかさ密度の影響を把握することを意図して，含水比と乾燥密度を
+変化させたときのインピーダンスの挙動を調べた． 
+\section{実験方法と結果}
+\subsection{実験供試体}
+供試体の作成はモンモリロナイト(クニミネ工業社製，クニピアF)と純水を所定の
+含水比となるように混合し，油圧プレスで圧縮してペレット状に成形することによって作成した．
+圧縮成形は試料を直径29.4mmのモールドに入れて行い，厚みがおよそ
+9$\sim$10mmの円盤状のペレットとなるようにした．
+供試体の含水比は15から25$\%$となるようにして含水比の異なる
+供試体計5体を作成した．
+これらの供試体の正確な含水比は実験終了後に、炉乾燥して乾燥重量を求めることで
+決定した．その結果を表-\ref{tbl:samples}に示す．
+\begin{table}[h]
+\begin{center}
+\caption{供試体の名称と含水比}
+	\label{tbl:samples}
+\begin{tabular}{c||c|c|c|c|c}
+\hline
+	名称 & w15 & w17 & w20 & w22 & w24 \\
+\hline
+\hline
+	目標含水比[\%] & 15.0 & 17.5 & 20.0 & 22.0 & 24.0 \\
+\hline
+	実際の含水比[\%] &  14.3 & 16.5 & 18.9 & 21.3 & 22.5  \\
+\hline 
+\end{tabular}
+\end{center}
+\end{table}
+いずれの供試体も実際の含水比は目標値を下回っている．
+これは，粘土の混合時に湿度が低く一部の水分が失われたためと考えられる．
+\subsection{インピーダンスの計測方法}
+図\ref{fig:fig2}にインピーダンス計測のための装置構成を示す．
+実験装置は油圧プレス，計測セル，インピーダンスアナライザおよび制御PCで構成されている．
+油圧プレスは供試体を所定の厚さまで圧縮成形するためのものである．
+インピーダンス計測は供試体を圧縮成形のためのモールドに入れた状態で行うため，
+モールドは計測セルを兼ねたものとなっている．
+また，圧縮の際に押し込むピストンはSUS316Lのステンレスネジを
+旋盤加工して作成したもので，これが電極を兼ねる．
+インピーダンスの計測は，同一の供試体を段階的に圧縮し，厚さの異なる状態
+において行う．具体的には，供試体の厚さを最初に$h=10.5$mm程度まで圧縮してこれを初期状態とする．
+その後0.5mmずつ9.0mmとなるまで供試体を圧縮し，各圧縮段階でインピダンスを3回
+計測する．このようにすることで，含水比が一定で乾燥密度の異なるときのインピーダンスを
+得ることができる．インピーダンススペクトルの測定は，市販のケミカルインピーダンスアナライザ
+(HIOKI,IM3590)を用い，周波数の掃引範囲は0.05[Hz]から100[kHz]とし，その間対数軸上で
+等間隔にとった251の周波数で計測した．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig1.eps} 
+	\end{center}
+	\caption{
+		インピーダンス計測のための実験装置．
+	} 
+	\label{fig:fig1}
+\end{figure}
+%--------------------
+図\ref{fig:fig2}に，インピーダンス計測時の供試体の含水比と乾燥密度を示す．
+図中の破線は飽和度が一定の曲線を示したもので，各試験体について15点程度の
+測定値が示されている．
+これは，供試体の圧縮に伴いかさ密度が変化するため，インピーダンス計測を
+行うたびに，供試体の厚さを計測しておき，事後的に乾燥密度を算出したためである．
+なお，乾燥密度が供試体によって異なる理由は，試験開始時のピストンの位置には
+$\pm$0.1mm程度の誤差が生じていたことによると考えられる．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{Figs/fig2.eps} 
+	\end{center}
+	\caption{
+		インピーダンス計測時の乾燥密度と含水比．
+		破線は飽和度一定の曲線を表す．
+	} 
+	\label{fig:fig2}
+\end{figure}
+%--------------------
+\subsection{実験結果}
+図\ref{fig:fig3}に，計測で得られたインピーダンススペクトル(一部)を示す．
+このグラフは，横軸をインピーダンスの実部，縦軸を虚部の符号を反転
+させた複素平面にインピーダンスを表示したもので，このようなグラフは
+ナイキスト線図と呼ばれる．
+図\ref{fig:fig3}はw17供試体に対する結果全てを示したもので、実軸上で
+左側にあるものほど，供試体の厚さが小さくかさ密度が高い場合の結果を表している．
+次節では，これらの結果の解釈について述べる．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig3.eps} 
+	\end{center}
+	\caption{
+		インピーダンススペクトルのナイキスト線図による表示
+		(w17供試体に対する計測結果)．
+	} 
+	\label{fig:fig3}
+\end{figure}
+%--------------------
+\section{等価回路の推定}
+供試体に印加した交流の各周波数を$\omega$, 印加電圧を$V(\omega)$，
+応答電流を$I(\omega)$とする．インピーダンスは$V(\omega)$と$I(\omega)$の比:
+\begin{equation}
+	Z(\omega)=\frac{V(\omega)}{I(\omega)}
+	\label{eqn:def_Z}
+\end{equation}
+で与えられる複素数である．実験で得られたインピーダンスを再現することのできる
+電気回路は等価回路と呼ばれる．電気化学インピーダンス法では，計測結果から等価回路を
+推定し，各々の回路素子に対応した電気化学的プロセスに関する情報を取得する．
+本節では，計測で得られたインピーダンスの特徴を調べ，不飽和粘土の等価回路を推定する．
+
+図\ref{fig:fig4}は今回の実験で得られた典型的なナイキスト線図について
+その特徴を示したものである．黒の実線で示した計測結果には，低周波側に大きな
+容量性の半円(i)のおよそ半分が現れている．
+高周波側にも容量性半円の一部と思われる箇所がわずかに見られ，図に想定される
+半円を青の破線で描き込んである。実際、100KHZ以上の周波数範囲まで計測を行うと，
+この部分にもはっきりとした半円が現れることは，別途行った実験において確認している．
+ここでは，物質移動に関係した長い緩和時間を持つ現象に興味があるため，低周波側の
+半円(i)について調べる．円弧状の半円を示す等価回路の一つはRC並列回路である．
+ただし，RC並列回路は完全な半円としてナイキスト線図を描く．
+一方，ここでの計測結果は横長で扁平な円になっており，RC並列回路でなく
+Cole-ColeプロットやCole-Davidsonプロットの使用が必要となる．
+いずれのプロットを選択するかにあたり，半円(i)の高周波側での挙動を見ると
+図\ref{fig:fig4}に緑の実線で示した箇所で直線的に変化をする箇所があることに気付く．
+直線的なインピーダンススペクトルはCPE素子で表現することができるため，
+このことはCPE素子を含む等価回路を想定すべきであることを示唆している．
+Cole-ColeプロットはCPEと抵抗の並列接続で与えられることからこの条件を満足する．
+一方，Cole-Davidsonプロットは，Cole-Coleプロットと類似したナイキスト線図を与えるが，
+有限個のCPE素子では表現することができない．
+ナイキスト線図上の直線的変化はワールブルグインピーダンスにも現れる．
+しかしながら，ワールブルグインピーダンスにおける直線部分の傾きは45$^\circ$である
+のに対し，図\ref{fig:fig4}では直線の傾き$\alpha$が60$\sim$70度になっている．
+従って， ワールブルグインピーダンスだけでは，今回の実験結果を再現することはできず，
+この点でもCole-Coleプロットが適切と言える．
+Cole-Coleプロットのインピーダンスは，
+\begin{equation}
+        Z=R_0 +\frac{R_{ct}}{1+\left( i\omega R_{ct}C\right)^p}
+        \label{eqn:CC_R0}
+\end{equation}
+で与えられる．ここに，$R_0$と$R_{ct}$は抵抗を，$C$はコンデンサー
+の静電容量を，指数$p$は容量性半円の扁平度をきめるパラメータである。
+式(\ref{eq:CC_R0})は次のように書き直すことができる．
+\begin{equation}
+        Z=R_0 +\frac{R_{ct}}{1+\left( i\omega \right)^pT_{CPE}}
+        \label{eqn:R_CPE}
+\end{equation}
+ただし，
+\begin{equation}
+        T_{CPE}=R_{ct}^{p-1}C^{p}
+        \label{eqn:T_CPE}
+\end{equation}
+である．式(\ref{eqn:R_CPE})は図\ref{fig:fig5}の回路の合成インピーダンス
+であることから，この図に示した抵抗aとCPE(b)-抵抗(c)の直-並列回路が
+本研究で用いる等価回路となる．
+なお，$T_{CPE}$はCPE素子の時定数で，その次元は
+\begin{equation}
+        [T_{CPE}] ={\rm [ F\cdot s^{p-1}]}
+        \label{eqn:}
+\end{equation}
+で，指数$p$が1のとき，コンデンサーの静電容量と単位も含めて一致する．
+
+これに，抵抗を直列に接続すれば，実数軸上の任意の位置になる半円状のスペクトルへの
+フィッティングを行うことができる．従って，ここで用いるインピーダンスは
+
+以上のことから，ここではCole-Coleプロットを用いて，実験で得られたインピーダンス
+スペクトルのフィッティングを行う．
+
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig4.eps} 
+	\end{center}
+	\caption{
+		計測されたインピーダンススペクトルの特徴．
+	} 
+	\label{fig:fig4}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{Figs/fig5.eps} 
+	\end{center}
+	\caption{
+		Cole-Coleプロットの等価回路．
+	} 
+	\label{fig:fig5}
+\end{figure}
+%--------------------
+\section{回路素子定数の推定と考察}
+実験結果に式(\ref{eqn:R_CPE})のインピーダンスをフィッティングすることで，
+図\ref{fig:fig5}の回路に含まれる素子定数$R_0,R_{ct},T_{CPE}$および$p$を
+求めた．素子定数の決定には最小二乗法を用い，実験データと式(\ref{eqn:R_CPE})
+で与えられるインピーダンスの残差が最小となるように行った．
+以下，その結果と考察を最も重要な回路素子であるCPEの素子について示す．
+\\
+図\ref{fig:fig6}にCPEの時定数$T_{CPE}$に対する推定結果を示す．
+この図の(a)は横軸を乾燥密ととして，(b)は含水比として$T_{CPE}$を
+プロットしたものである．これらのプロットにおいて同一色の
+ドットは，同じ試験体に対する結果，すなわち，同一含水比で乾燥密度
+の異なる場合の結果を示している．
+例えば，オレンジのドットはw15に対する結果を表し，含水比は14.3\%，
+乾燥密度は1.5から1.8g/cm$^3$の間にある場合の結果を示している．
+この図から明らかなように，同一の含水比であれば乾燥密度が
+高い程$T_{CPE}$は大きな値となる．また，同じ乾燥密度でみたときには，
+含水比が高い程大きな値となることが分かる．
+$T_{CPE}$はコンデンサの静電容量とは異なる次元を持つ量であるが，
+蓄電量と電圧の関係を表す実数値の係数であることから，
+蓄電容量を表す定数という点は同じである．
+従って、図\ref{fig:fig6}の結果は，水分が多い程、また，
+乾燥密度が大きい程、蓄電容量が増すことを意味している．
+蓄電は粘土内の電荷に局所的に電荷の偏りが生じて
+電気二重層を形成することによって起きる。
+あるいは、局所的な分極が生じることで微小なコンデンサが
+供試体内部に多数形成されるという見方をしてもよい．
+このように考えると,水分の増加に伴い$T_{CPE}$の値が大きくなることは,
+局所的な分極が間隙水の内部あるいは表面で発生していること判断できる.
+一方,乾燥密度の増加による$T_{CPE}$の増加は,局所的な分極ベクトルが
+より狭い領域に配置されることによって生じるためと解釈することができる.
+すなわち,同一強度の分極ベクトルが、直列に配置されるよりも並列に
+配置された場合の方が,合計分極量や単位長さあたりの電位低下は大きく,
+結果として大きな静電容量を持つことになる.
+このことは、コンデンサの静電容量が極板間隔に反比例することと同じ効果である．
+以上の解釈を踏まえれば，図\ref{fig:fig6}の結果は極めて妥当なものと言える．
+なお，Cole-Coleプロットの容量成分$C$について，乾燥密度と含水比との関係を
+みても同様な傾向は認められず，CPEの定数を見ることが現象を理解する
+上でより適切であることを裏付けている．
+
+最後に,CPEの指数$p$と含水比，乾燥密度との関係を図\ref{fig:fig7}に示す．
+はじめに含水比との関係(b)を見ると，水分の増加に対し$p$の変化は
+単調でなく含水比20\%程度で極大となっている．
+次に，乾燥密度との関係(a)を含水比毎に見ると，乾燥密度に対して増加
+するケースと低下するケースが混在していることが分かる．
+含水比が20\%以下のw15,w17およびw20では，乾燥密度の増加に応じて$p$も増加する．
+これに対して，高含水比側(w22とw24)では，乾燥密度の増加に対して指数$p$は
+現象している．この結果は，含水比20\%前後では，指数$p$を決める要因となる
+電気化学的現象において特別な状態が発生していることを示唆する．
+そこで、指数$p$の意味についてより詳しく検討する．
+CPEの電流と電圧の関係は
+\begin{equation}
+	V=\frac{I}{(i\omega )^PT_{CPE}}
+	\label{eqn:}
+\end{equation}
+である．帯電量$Q$は電流を時間に関して一回積分することで得られるため，
+交流の場合には
+\begin{equation}
+	Q=\frac{I}{i \omega}=(i\omega)^{p-1}T_{CPE}V=T_{CPE}Ve^{-i\frac{\pi}{2}(1-p)}
+	\label{eqn:}
+\end{equation}
+となる．これは，帯電量$Q$の位相は印加電圧の位相に比べて
+$\phi_p=\frac{\pi}{2}(1-p)$だけ遅れることを意味する．
+$p=1$の場合は理想的なコンデンサを意味し，この場合は$\phi_p=0$で帯電は
+電圧と完全に同期して行われる．
+一方、$p<1$の場合，$\phi_p>0$で位相遅れが生じ，印加した電圧よりも帯電が遅れ，
+指数$p$が小さい程その遅れが大きくなる．
+なお，分極を生じさせる電荷の移動が拡散に支配されるときには$p=0.5$となり，
+このときのCPEはワールブルグインピーダンスと呼ばれている．
+つまり，$0.5<p<1$では，分極は拡散に支配された電荷移動で生じる場合程は遅くは無いが，
+電圧変化に追従できるほど速やかには分極を起こすことができない状況にあることを意味する．
+このことを踏まえ，あらためて図\ref{fig:fig7}をみると，$p$の下限値は概ね0.5程度で拡散
+に支配され，上限は0.75で必ず位相遅れを伴う推定結果は合理的であることが分かる．
+また，低含水比の場合に、乾燥密度に対して$p$が増加することは，
+乾燥密度が高くなることで、分極がより素早く起きるようになると言い換えることができる。
+分極が生じるためには電荷の移動が必要で，電荷の移動は間隙水を経路として起きる．
+そのため，間隙水の量と，間隙水ネットワークの連結性と屈曲は分極の位相遅れに
+影響し，結果として指数$p$の値に反映される．
+以上のことを踏まえれば，低含水比側での乾燥密度に対する$p$の増加は，乾燥密度が増すことによって
+間隙水の連結性がよくなることに起因すると解釈できる。
+これに対して，高含水比側での乾燥密度に対する$p$の減少は，
+間隙水の連結性が向上する効果を，圧縮によって生じる間隙水ネットワークの屈曲や閉塞による
+効果が上回り，電荷移動が抑制されるためと考えることができる．
+これらの相反する効果が，含水比20\%程度でバランスすることで，
+乾燥密度に対する$p$の変化挙動が切り替わったことを，図\ref{fig:fig7}の結果は示している．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig6.eps} 
+	\end{center}
+	\caption{
+		実験結果から推定したCPEの時定数$T_{CPE}$.
+	} 
+	\label{fig:fig6}
+\end{figure}
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{Figs/fig7.eps} 
+	\end{center}
+	\caption{
+		実験結果から推定したCPEの指数$p$.
+	} 
+	\label{fig:fig7}
+\end{figure}
+%--------------------
+\section{まとめ}
+本研究では，不飽和粘土の電気化学インピーダンス特性を把握することを目的として，
+モンモリロナイトを圧縮成形して作成した供試体を用いてインピーダンススペクトル
+の計測を行った． インピーダンス計測は、粘土供試体の含水比と乾燥密度が異なる場合
+について行い，水分量とかさ密度の影響を調べた，また，計測結果を再現する
+ための等価回路を設定して回路定数の推定を行い，回路定数と水分，密度の関係について
+検討を行った．その結果として得られた知見は以下のようである．
+\begin{enumerate}
+\item
+        圧縮成形された粘土供試体のインピーダンススペクトルは低周波側で容量性の半円を示す。
+        ただし、その半円は実数軸方向に扁平な形状とり，高周波側では45度よりも大きな
+	傾きの直線的変化を示す。
+\item
+	上記の特徴を捉えたインピーダンススペクトルは，Cole-Coleプロットで与えることができる.
+	Cole-Coleプロットの等価回路は，CPEと抵抗の並列回路に別の抵抗を直列接続した直−並列回路
+	で与えられる．
+\item
+	直列接続された抵抗$R_{0}$は供試体内の直流成分に関する電荷移動抵抗を，
+	並列接続された抵抗$R_{ct}$は物質界面での電荷移動抵抗を表し，
+	CPEは局所的な分極(電気二重層)の発生による蓄電効果を表現する．
+\item
+	実験結果から推定した等価回路の回路定数のうち，直列抵抗成分$R_{ct}$とCPEの時定数
+	$T_{CPE}$およと指数$p$は，含水比と乾燥密度との間に相関を示す.
+\item
+        直列抵抗成分$R_{ct}$は含水比、乾燥密度の増加にいずれに対しても減少する。
+\item
+        $T_{CPE}$は含水比の増加につれて大きくなる。このことは局所的な分極は間隙水中で
+	生じていることを意味する.
+\item
+        $T_{CPE}$は乾燥密度の増加に対しても増加し，これは局所的な分極が密度が
+	高いほど，より狭い範囲に集中することに起因する．
+\item
+        CPEの指数$p$は含水比$20\%$程度で最大となり、もっともコンデンサーに近い応答を示す。
+        乾燥密度との関係では、水分量が少ないときには密度の増加に対して$p$が増加するが、
+        水分量が多いときには密度の増加にたいして指数$p$は減少する．
+\item
+        指数$p$のこのような振る舞いには、水分や空隙の量だけでなくその構造
+	(連結性や屈曲率)が影響している．
+\item
+        $T_{CPE}$は局所的な分極による蓄電容量を，指数$p$は印加電圧に対する
+	帯電量変化の位相遅れを表す．
+\end{enumerate}
+今後はより正確なフィッティングが可能な等価回路の推定や、回路素子定数を同定
+するための効率的な非線形最小二乗法の開発が課題となる。
+また、等価回路の回路素子に対応する電気化学プロセスを正確に特定し、微視構造モデルと
+回路定数の定量的な関係をつけることが重要な課題となる。この点が解決されれば、
+粘土鉱物スケールでの微視的な電荷移動や間隙と間隙水構造
+に関する情報をインピーダンス計測結果から逆推定する道が拓ける．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\gt 謝辞:}
+%本実験に用いた花崗岩供試体は浮田石材店代表浮田隆司氏に提供頂いた．
+%また本研究の推進には，科学研究費補助金(基盤研究©課題番号\#18K04334)の補助を受けた．
+%併せて謝意を表す．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\lastpagecontrol[2cm]{13.7cm}
+\begin{thebibliography}{99}
+\begin{spacing}{1.175}
+\bibitem{RockPhys}
+	ゲガーン, Y., パルシアウスカス, V.: 
+	岩石物性入門, シュプリンガー・ジャパン, 2008. 
+\bibitem{Sato}
+	Sato, H., Fehler, M.C., and Maeda, T.:Seismic wave propagation and scattering in the heterogeneous earth, 
+	Springer, 2012.
+\bibitem{Borcea}
+	Borcea, L.:Imaging with waves in random media, {\it Notices of the American Mathematical Society}, Vol.66, No.11, 
+	pp.1800-1812, 2019.
+\bibitem{Thompson}
+	Thompson, B. R.:Elastic-wave propagation in random polycrystals: 
+	fundamentals and application to nondestructive evaluation, 
+	in Imaging of Complex Media with Acoustic and Seismic Waves, Topics in Applied Physics 84, Springer, pp.233-256, 2002.
+\bibitem{Etgen}
+	Etgen, J., Gray, S. H., and Zhang, Y.:An overview of depth imaging in exploration geophysics, 
+	{\it Geophysics}, Vol.74, No.6, pp.WCA5-WCA17, 2009.
+\bibitem{Schmitz}
+	Schmitz, V.:Nondestructive acoustic imaging techniques, in Imaging of Complex Media with Acoustic and Seismic Waves, 
+	Topics in Applied Physics 84, Springer, pp.167-189, 2002.
+\bibitem{Langenberg}
+	Shlivinski, A. and Langenberg, K. J.:Defect imaging with elastic waves in inhomogeneous-anisotropic materials with composite geometries, {\it Ultrasonics}, Vol.46, pp.89-104, 2007.
+\bibitem{Bleistein}
+	Bleistein, N., Cohen, J. K. and Stockwell, Jr. J. W.:Mathematics of multidimensional seismic imaging, migration, and inversion, Springer, pp.220, 2000.
+\bibitem{Yu}
+	Yu, L., Thompson, R. B., Mrgentan, F. J., and Wang, Y.:A Monte-Carlo model for microstructure-induced ultrasonic signal fluctuations in titanium alloy inspections,
+	{\it Review of Progress in Quantitative Nondestructive Evaluation}, Vol.23, pp.1170-1177, 2004.
+\bibitem{Li}
+	Li, A., Roberts, R., Mrgentan, F. J., and Thompson, R. B.:A 2-D numerical simulation study of microstructure-induced  ultrasonic beam distortions,
+	{\it Review of Progress in Quantitative Nondestructive Evaluation}, Vol.23, pp.1178-1186, 2004.
+\bibitem{NishizawaI}
+	西澤修:岩石中の地震波伝播I:不均質媒体のモデル化と弾性波速度, 地学雑誌, 第114巻, 第6号,  pp.921-948,  2005.
+\bibitem{Muller}
+	Muller, G., Roth, M. and Korn, M.:Seismic-wave traveltimes in random media,
+	{\it Geophys. J. Int.}, Vol.110, pp.29-41, 1992. 
+\bibitem{Korn}
+	Korn, M.:Seismic waves in random media, 
+	{\it Journal of Applied Geophysics}, Vol.29, pp.247-269, 1993.
+\bibitem{Spetzler2001}
+	Spetzler, J. and Snieder, R.:The effect of small-scale heterogeneity on the arrival time of waves, 
+	{\it Geophys. J. Int.}, Vol.145, pp.786-796, 2001. 
+\bibitem{Spetzler}
+	Spetzler, J., Sivaji, C., Nishizawa, O., and Fukushima, Y.:A test of ray theory and scattering theory based on
+	a laboratory experiment using ultrasonic waves and numerical 
+%\lastpagecontrol[0.0cm]{9.0cm}
+\newpage
+	simulation by finite-difference method, 
+	{\it Geophys. J. Int.}, Vol.148, pp.165-178, 2002. 
+\bibitem{Nishizawa1996}
+	西澤修, 雷興林, 佐藤隆司:不均質媒体での地震波伝モデル実験-レーザードップラー速度計を用いた波動計測-
+	, 地震調査所月報, 第47巻, 第４号, pp.209-222, 1996.
+\bibitem{Nishizawa2001}
+	西澤修, 雷興林, チャダラム シバジ:不均質媒質での地震波伝播モデル実験, 
+	地震, 第54巻, pp.171-183, 2001.
+\bibitem{Sivaji}
+	Sivaji, C., Nishizawa, O., Kitagawa, G., and Fukushima, Y.:A physical-model study of the statistics of seismic waveform fluctuation in random heterogeneous media, 
+	{\it Geophys. J. Int.}, Vol.148, pp.575-595, 2002. 
+\bibitem{Fukushima}
+	Fukushima, Y., Nishizawa, O., Sato, H., and Ohtake, M.:Laboratory study on scattering characteristics of shear waves 
+	in rock samples, {\it Bulltine of Seismological Society of America}, Vol.93, No.1, pp.253-263, 2003.
+%\bibitem{Okubo2012}
+%	大久保 慎人, 雑賀 敦, 鈴木 貞臣, 中島 唯貴: 地震動観測による地震波速度と岩石物性試験による弾性波速度の関係
+%	-段発発破波形の相関による地震波速度構造推定-: 地震, 第65巻, pp.21-30, 2012.
+\bibitem{Kudo1}
+	工藤洋三, 橋本堅一, 佐野修, 中川浩二:花崗岩の力学的異方性と岩石組織欠陥の分布,
+	土木学会論文集, 第370号/III-5, pp.189-197, 1986.
+\bibitem{Kudo2}
+	工藤洋三, 橋本堅一, 佐野修, 中川浩二:瀬戸内地方の採石場における花崗岩石の異方性, 
+	土木学会論文集, 第382号/III-7, pp.45-53, 1987.
+\bibitem{Sano1}
+	佐野修, 工藤洋三, 河嶋智, 水田義明:異方性体としての花崗岩の弾性率に関する実験的研究, 
+	材料, 第37巻, 第418号, pp.84-90, 1987.
+\bibitem{Sano2}
+	佐野修, 民部雅史, 平野亮, 工藤洋三, 水田義明:弾性的対称性未知の岩石の弾性定数決定に関する研究, 
+	材料, 第40巻, 第449号，pp.96-102, 1990.
+\bibitem{Takagi}
+	高木秀雄, 三輪成徳, 横溝佳侑, 西嶋圭, 円城寺守, 水野崇, 天野健治:土岐花崗岩中の石英に発達するマイクロクラックの三次元
+	方位分布による古応力場の復元と生成環境, 地質学雑誌, 第114巻, 第7号, pp.321-335, 2008.
+%\bibitem{Rwk_textbook}
+%	Klaffter, J., and Sololov,I.M.,秋元 琢磨(訳): ランダムウォークはじめの一歩，共立出版， 2018．
+\end{spacing}
+\end{thebibliography}
+%\begin{flushright}
+%	\small
+%	\bf{ (Received June 24, 2020)\\
+%	(Accepted November 19, 2020)}
+%\end{flushright}
+\end{document}
+
+%\lastpagesettings
+%\begin{minipage}[c]{13.7cm}
+%\end{minipage}
+%\lastpagecontrol[0cm]{13.7cm}
+%\begin{multicols}{1}
+%-------------------------------------------------
+%-------------------------------------------------
+%\end{multicols}
+
