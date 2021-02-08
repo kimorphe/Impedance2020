@@ -17,6 +17,17 @@ git add Tex/*.cls
 git add Tex/*.txt
 git add Tex/*.sh
 git add Tex/Figs/*.svgz
+
+git add Tex/Abstract/*.tex
+git add Tex/Abstract/makefile
+git add Tex/Abstract/*.svgz
+git add Tex/Abstract/*.cls
+git add Tex/Abstract/*.sty
+git add Tex/Abstract/*.txt
+git add Tex/Abstract/*.sh
+git add Tex/Abstract/Figs/*.svgz
+
+
 # Excel Files
 git add *.xlsx
 git add *.csv
