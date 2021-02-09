@@ -1,6 +1,6 @@
 ﻿\documentclass[11pt,a4j]{mybook2}
 \usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 %\documentclass[11pt,a4j]{jbook}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx,titlesec}
@@ -121,13 +121,13 @@ related to the pore and pore water structure of the compacted clay.
 \frontmatter
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{はじめに}
+%\chapter{はじめに}
 	\input{1_intro.tex}
-\chapter{スメクタイト族粘土の結晶構造，分類，特徴}
+%\chapter{スメクタイト族粘土の結晶構造，分類，特徴}
 	\input{2_clay.tex}
-\chapter{電気化学インピーダンス法の基礎}
+%\chapter{電気化学インピーダンス法の基礎}
 	\input{3_theory.tex}
-\chapter{電気化学インピーダンスの測定方法と結果}
+%\chapter{電気化学インピーダンスの測定方法と結果}
 	\input{4_experiment.tex}
 %\chapter{考察}
 	\input{5_discussion.tex}
@@ -179,9 +179,26 @@ related to the pore and pore water structure of the compacted clay.
 回路定数の定量的な関係をつけることが重要な課題となる。この点が解決されれば、
 粘土鉱物スケールでの微視的な電荷移動や間隙と間隙水構造
 に関する情報をインピーダンス計測結果から逆推定する道が拓ける．
+\renewcommand{\bibname}{参考文献}
 \begin{thebibliography}{99}
 %\begin{spacing}{1.175}
-\bibitem{Itagaki}
+\bibitem{Fujiie}
+	藤家洋一: 原子力-自然に学び，自然を真似る-, ERC出版，2005.
+\bibitem{NUMO_URL}
+	原子力発電環境整備機構: https://www.numo.or.jp/chisoushobun/.
+\bibitem{NUMO}
+	原子力発電環境整備機構:地層処分事業の安全確保(2010年度版)-確かな技術による安全な地層処分の実現のために-, NUMO-TR-11-01, 2011.
+\bibitem{Sudo}
+	須藤談話会編, 粘土科学への招待　粘土の素顔と魅力, 三共出版, 2000.
+\bibitem{Watanabe}
+	T.Watanabe and T.Satou: Expansion characteristics of montmorillonite and saponite under various 
+	relative humiditiy conditions, Clay Science, 7, pp.129-138, 1988.
+\bibitem{Morodome}
+	S.Morodome and K.Kawamura: Swelling behavior of Na- and Ca- montmorillonite up to 150$^\circ$ by in-situ 
+	X-ray diffraction experiments, Clay and Clay Minerals, vol.57, No.2, pp.150-160, 2009.
+\bibitem{Sato}
+	佐藤努: 粘土鉱物の水和と吸着水の構造, 鉱物学雑誌, 第25巻, 第3号 , pp.99-110, 1996.
+\bibitem{ieItagaki}
 	板垣 昌幸:電気化学インピーダンス法 第二版 原理・測定・解析，丸善出版， 2011. 
 %\end{spacing}
 \end{thebibliography}
