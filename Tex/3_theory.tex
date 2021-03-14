@@ -119,7 +119,7 @@ Nyquist線図はインピーダンススペクトの特徴をしばしば直感�
 \end{figure}
 %--------------------
 以上に述べた基本的な回路素子を組み合わせることで，より多様なインピーダンススペクトルを表現することができる．
-そのような例として以下では，本研究に関連の深い4つの回路を取り上げ,そのインピーダンススペクトルを示す．
+そのような例として以下では，本研究に関連の深い5つの回路を取り上げ,そのインピーダンススペクトルを示す．
 \section{合成インピーダンス}
 \subsection{RC並列回路}
 抵抗$R$とコンデンサ$C$を並列に接続したRC並列回路の合成インピーダンスは
@@ -227,6 +227,7 @@ Constant phase element(CPE)がある．
 		i
 		\sin\left(\frac{\pi p}{2}\right) 
 	\right)
+	=\frac{1}{\omega^p T_{CPE}}e^{-\frac{i\pi p}{2}} 
 	\label{eqn:Z_CPE}
 \end{equation}
 CPEの位相は
@@ -255,7 +256,9 @@ Cole-Coleプロット(\ref{eqn:CC})は，
 実数軸に対して45$^\circ$の傾きを持つ直線を描くことが知られている．
 この場合，インピーダンスはCPEの特別な場合として
 \begin{equation}
-	Z=\frac{\sigma}{\sqrt{i\omega}}=\sigma e^{-\frac{i\omega p}{2}}
+	Z=\frac{\sigma}{\sqrt{i\omega}}
+	=
+	\frac{\sigma}{\sqrt{\omega}}e^{-\frac{i\pi}{4}}
 	\label{eqn:Zb}
 \end{equation}
 で与えられる．式(\ref{eqn:Zb})はワールブルグ(Warburg)インピーダンスと
@@ -271,12 +274,13 @@ Cole-Coleプロット(\ref{eqn:CC})は，
 電流と電圧変調の関係を求めれば，インピーダンスが
 次のようになることが示される．
 \begin{equation}
-	Z=\frac{\sigma}{\sqrt{i\omega}}=\sigma e^{-\frac{i\omega p}{2}}
+	Z=
+	\frac{\sigma}{\sqrt{\omega}}e^{-\frac{i\pi}{4}}
 	\tanh \left( \delta \sqrt{\frac{i\omega}{D}}\right)
 	\label{eqn:ZbF}
 \end{equation}
 ここに，$\delta$は拡散層の厚さを，$D$は拡散係数を表す．
-式(\ref{fig:ZbF})もワールブルグインピーダンスと呼ばれ，
+式(\ref{eqn:ZbF})もワールブルグインピーダンスと呼ばれ，
 式(\ref{eqn:Zb})との区別が必要な場合には，有限ワールブルグインピーダンス
 と呼ばることもある．
 有限ワールブルグインピーダンスのスペクトルは，
